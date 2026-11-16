@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: drinks-market-mini-app
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    disk:
+      name: drinks-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: DB_PATH
+        value: /var/data/shop.sqlite
+      - key: REQUIRE_TELEGRAM_AUTH
+        value: true
+      - key: BOT_TOKEN
+        sync: false
+      - key: ADMIN_CHAT_ID
+        sync: false
+      - key: ADMIN_TOKEN
+        sync: false

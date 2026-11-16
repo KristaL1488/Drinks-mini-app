@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Админ-панель — Drinks Market</title><link rel="stylesheet" href="admin.css"></head>
+<body><main class="admin-shell">
+<header class="admin-header"><div><p class="eyebrow">DRINKS MARKET / CONTROL</p><h1>Панель управления</h1><p class="muted">Товары, цены, остатки и заказы</p></div><span class="status-dot">СЕРВЕР</span></header>
+<section class="login card" id="loginPanel"><h2>Вход администратора</h2><p class="muted">Введи ADMIN_TOKEN из файла окружения хостинга.</p><form id="loginForm"><input id="tokenInput" type="password" placeholder="Токен администратора" autocomplete="current-password" required><button class="primary">Войти</button></form><p class="error" id="loginError"></p></section>
+<div id="dashboard" hidden>
+<nav class="admin-tabs"><button class="active" data-tab="products">Товары</button><button data-tab="orders">Заказы</button></nav>
+<section id="productsTab">
+<div class="section-top"><div><p class="eyebrow">КАТАЛОГ</p><h2>Товары</h2></div><button class="primary" id="newProduct">＋ Добавить товар</button></div>
+<form id="productForm" class="card editor" hidden>
+<div class="form-head"><h3 id="editorTitle">Новый товар</h3><button type="button" class="ghost" id="cancelEdit">Закрыть</button></div>
+<input type="hidden" id="pId">
+<div class="form-grid">
+<label>Название<input id="pName" required maxlength="90"></label><label>Категория<input id="pCategory" value="Газировка" required></label>
+<label>Цена, ₽<input id="pPrice" type="number" min="0" step="1" required></label><label>Объём<input id="pVolume" placeholder="0,5 л" required></label>
+<label>Эмодзи<input id="pEmoji" value="🥤" maxlength="8"></label><label>Остаток<input id="pStock" type="number" min="0" step="1" value="999" required></label>
+<label class="wide">Описание<input id="pDescription" maxlength="180"></label><label class="wide">URL изображения<input id="pImage" type="url" placeholder="https://..."></label>
+<label class="check"><input id="pActive" type="checkbox" checked> Показывать в каталоге</label>
+</div><p class="error" id="productError"></p><button class="primary" type="submit">Сохранить товар</button>
+</form><div id="productList" class="list"></div></section>
+<section id="ordersTab" hidden><div class="section-top"><div><p class="eyebrow">ЗАКАЗЫ</p><h2>Последние заказы</h2></div><button class="secondary" id="refreshOrders">Обновить</button></div><div id="orderList" class="list"></div></section>
+</div><div class="toast" id="toast"></div>
+</main><script src="admin.js"></script></body></html>
